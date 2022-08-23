@@ -17,14 +17,15 @@ const orderSchema = new mongoose.Schema({
         type: String,
     },
     quantity: {
-        type: String,
+        type: Number,
         required: true,
+        default: 1,
     },
     color: {
         type: String,
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
     },
     accept: {
@@ -33,4 +34,4 @@ const orderSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-export default mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Order', orderSchema);
