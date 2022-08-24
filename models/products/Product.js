@@ -54,6 +54,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    sellingPort: {
+        type: String,
+        required: true,
+    },
     accept: {
         type: Boolean,
         default: false,
