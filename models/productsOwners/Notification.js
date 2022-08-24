@@ -19,4 +19,4 @@ const notificationSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.model('Owner', notificationSchema);
+module.exports = mongoose.model('Notification', notificationSchema);

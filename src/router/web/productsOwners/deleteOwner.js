@@ -1,12 +1,12 @@
-const User = require('../../../../models/users/User');
+const Owner = require('../../../../models/productsOwners/Owner');
 const express = require('express');
 const router = express.Router();
 const createError = require('../../../errors/errorHandle');
 //middlewares 
-const authenticate = require('../../../../middlewares/authenticateUser');
-router.delete('/:id', authenticate, async (req, res, next) => {
-    if (req.params.id === req.user.id) {
-        await User.findByIdAndDelete(req.user.id).then((result) => {
+const authenticateOwner = require('../../../../middlewares/authenticateOwner');
+router.delete('/:id', authenticateOwner , async (req, res, next) => {
+    if (req.params.id === req.owner.id) {
+        await Owner.findByIdAndDelete(req.owner.id).then((result) => {
             if (!result) {
                 next(createError(404, "somthing wrong"));
             } else {

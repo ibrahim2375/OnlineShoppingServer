@@ -1,15 +1,15 @@
-const User = require('../../../models/users/User')
+const Owner = require('../../../models/productsOwners/Owner')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const createError = require('../../errors/errorHandle');
 const methods = {
-    async createUser(req, res, next) {
+    async createOwner(req, res, next) {
         try {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(req.body.password, salt);
-            const newUser = new User({ ...req.body, password: hash });
-            await newUser.save();
-            res.status(200).send('user added succesfully....');
+            const newOwner = new Owner({ ...req.body, password: hash });
+            await newOwner.save();
+            res.status(200).send('owner added succesfully....');
         } catch (error) {
             next(error);
         }
@@ -18,19 +18,18 @@ const methods = {
         try {
             const email = req.body.email;
             const password = req.body.password;
-            // const number = req.body.number;
-            await User.findOne({ email: email }).then(user => {
-                if (!user) {
+            await Owner.findOne({ email: email }).then(owner => {
+                if (!owner) {
                     next(createError(403, 'this email not founded!'));
                 } else {
-                    bcrypt.compare(password, user.password).then((result) => {
+                    bcrypt.compare(password, owner.password).then((result) => {
                         if (result) {
                             ///succuss login
-                            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY_USER);
-                            const { password, ...other } = user._doc;
-                            res.cookie("access_token", token, {
+                            const token = jwt.sign({ id: owner._id }, process.env.JWT_SECRET_KEY_OWNER);
+                            const { password, ...other } = owner._doc;
+                            res.cookie("access_token_owner", token, {
                                 httpOnly: true
-                            }).status(200).json(other);
+                            }).status(200).json({ other });
                             // res.send("hi")
 
                         } else {

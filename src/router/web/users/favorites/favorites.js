@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const createError = require('../../../../errors/errorHandle');
 //middlewares 
-const authenticate = require('../../../../../middlewares/authenticate');
+const authenticate = require('../../../../../middlewares/authenticateUser');
 router.put('/:id', authenticate, async (req, res, next) => {
     if (req.params.id) {
         await User.findByIdAndUpdate(req.user.id, {

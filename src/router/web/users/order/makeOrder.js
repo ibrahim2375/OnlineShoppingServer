@@ -4,7 +4,7 @@ const router = express.Router();
 //errors
 const createError = require('../../../../errors/errorHandle');
 //middlewares 
-const authenticate = require('../../../../../middlewares/authenticate');
+const authenticate = require('../../../../../middlewares/authenticateUser');
 
 router.post('/:id', authenticate, async (req, res, next) => {
     if (req.params.id) {

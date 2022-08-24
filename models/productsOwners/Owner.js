@@ -38,4 +38,4 @@ const ownerSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.model('Owner', ownerSchema);
+module.exports = mongoose.model('Owner', ownerSchema);
