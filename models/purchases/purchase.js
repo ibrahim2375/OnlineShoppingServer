@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
+const purchaseSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -27,7 +27,11 @@ const orderSchema = new mongoose.Schema({
     accept: {
         type: Boolean,
         default: false,
-    }
+    },
+    paidMethod:{
+        type: String,
+        required: true,
+    }   
 }, { timestamps: true });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Purchase', purchaseSchema);

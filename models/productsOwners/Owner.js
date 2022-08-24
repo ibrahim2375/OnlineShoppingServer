@@ -34,6 +34,9 @@ const ownerSchema = new mongoose.Schema({
     numberOfOrders: {
         type: Number, 
         default: 0, 
+    },
+    totalMonyEearned: {
+        type: Number,
     }
 
 }, { timestamps: true });

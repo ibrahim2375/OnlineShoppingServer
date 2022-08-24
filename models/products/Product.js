@@ -47,10 +47,13 @@ const productSchema = new mongoose.Schema({
     state: {
         type: String,
     },
-    arrivalTime:{
+    arrivalTime: {
         type: String,
+    },
+    location: {
+        type: String,
+        required: true
     }
-
 }, { timestamps: true });
 
 module.exports = mongoose.model('Product', productSchema);
