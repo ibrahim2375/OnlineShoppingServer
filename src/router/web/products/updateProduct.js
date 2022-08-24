@@ -7,7 +7,7 @@ const authenticateOwner = require('../../../../middlewares/authenticateOwner');
 router.put('/:id', authenticateOwner ,async (req, res, next) => {
     if (req.params.id) {
         await Product.findByIdAndUpdate(req.params.id, {
-            $set: { ...req.body }
+            $set: {...req.body }
         }).then((result) => {
             if (!result) {
                 next(createError(404, "somthing wrong"));
