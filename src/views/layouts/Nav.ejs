@@ -31,13 +31,21 @@
           <a class="nav-link fw-bold" href="/">Home</a>
         </li>
       </ul>
-  
+
       <!-- Left links -->
-       <% if(owner) { %>
+      <% if(owner) { %>
       <div class="d-flex align-items-center">
-        <button type="button" class="btn btn-link px-3 me-2">
-          <%= owner.name %>
-        </button>
+        <a href="/api/owner/profile/<%= owner._id %>">
+          <button
+            type="button"
+            class="btn btn-link px-3 me-2"
+            data-mdb-toggle="tooltip"
+            data-mdb-html="true"
+            title="<em>Hi</em> <u><%= owner.name %></u>"
+          >
+            <%= owner.name %>
+          </button>
+        </a>
         <form action="/api/owners/auth/logout">
           <button
             type="submit"
@@ -45,11 +53,10 @@
             style="background-color: #5897fb"
           >
             logOut
-          </button></a
-        >
+          </button>
         </form>
       </div>
-       <% } else { %>
+      <% } else { %>
       <!-- Left links -->
       <div class="d-flex align-items-center">
         <a href="/api/owners/auth/login"
@@ -67,7 +74,7 @@
           </button></a
         >
       </div>
-       <% } %>
+      <% } %>
     </div>
     <!-- Collapsible wrapper -->
   </div>

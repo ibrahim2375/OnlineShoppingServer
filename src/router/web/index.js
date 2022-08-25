@@ -22,11 +22,17 @@ router.use('/api/products/owner/get', require('./products/OwnerProducts'));
 
 //products owners 
 router.use('/api/owner/get', require('./productsOwners/getOwner'));
+router.use('/api/owner/profile', require('./productsOwners/getOwner'));
 router.use('/api/owners/get', require('./productsOwners/getOwners'));
 router.use('/api/owners/update', require('./productsOwners/updateOwner'));
 router.use('/api/owners/delete', require('./productsOwners/deleteOwner'));
 router.use('/api/owners/auth/create', require('./productsOwners/auth/createOwner'));
 router.use('/api/owners/auth/login', require('./productsOwners/auth/signIn'));
 router.use('/api/owners/auth/logout', require('./productsOwners/auth/logout'));
+
+
+
+// 404 not founded
+router.use('*', require('./404/notFounded'));
 
 module.exports = router

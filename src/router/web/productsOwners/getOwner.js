@@ -21,5 +21,18 @@ router.post('/:id', authenticateOwner , async (req, res, next) => {
     }
 
 });
+router.get('/:id', authenticateOwner, async (req, res, next) => {
+   
+        // await Owner.findById(req.owner.id).then((owner) => {
+        //     if (!owner) {
+        //         res.status(200).send("somthing wrong");
+        //     } else {
+        //         res.status(200).json(owner);
+        //     }
+        // }).catch((err) => {
+        //     next(createError(err.status, err.message));
+        // })
+    res.render('Profile/profile', { owner: req.session.owner });
+});
 
 module.exports = router;
