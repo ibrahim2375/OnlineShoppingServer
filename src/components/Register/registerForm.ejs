@@ -1,0 +1,50 @@
+<form class="border p-5 rounded" action="/api/owners/auth/create" method="post">
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4">
+    <h1 class="text-center">Sign Up</h1>
+    <p class="text-center text-muted">
+      Create account as Owner to manage your products 🚀
+    </p>
+  </div>
+  <div class="col">
+      <p class="text-danger  fw-bold d-block"><%= errors.message %></p>
+    <!-- name input -->
+    <div class="form-outline-dark">
+      <input type="text" id="form6Example2" class="form-control" name="name" />
+      <label class="form-label" for="form6Example2">Full name</label>
+    </div>
+  <!-- Email input -->
+  <div class="form-outline-dark mb-4">
+    <input type="email" id="form6Example5" class="form-control" name="email"/>
+    <label class="form-label" for="form6Example5">Email</label>
+     
+  </div>
+  <!-- password input -->
+  <div class="form-outline-dark mb-4">
+    <input type="password" id="form6Example3" class="form-control" name="password" />
+    <label class="form-label" for="form6Example3">Password</label>
+     
+
+  </div>
+  <!-- Address input -->
+  <div class="form-outline-dark mb-4">
+    <input type="text" id="form6Example4" class="form-control" name="address" placeholder="building number/street/city/state/country"/>
+    <label class="form-label" for="form6Example4">Address</label>
+       
+  </div>
+  <!-- Number input -->
+  <div class="form-outline-dark mb-4">
+    <input type="text" id="form6Example6" class="form-control" name="number"/>
+    <label class="form-label" for="form6Example6">Phone</label>
+       
+
+  </div>
+ <!-- img input -->
+  <div class="form-outline-dark mb-4">
+    <input type="file" id="form6Example6" class="form-control" name="img"/>
+    <label class="form-label" for="form6Example6">Image profile</label>
+  </div>
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+</form>
+

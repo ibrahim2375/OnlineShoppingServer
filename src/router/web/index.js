@@ -1,4 +1,8 @@
 const router = require('express').Router()
+
+
+//pages 
+router.use('/', require('./app/Home'));
 ///user
 router.use('/api/user/get', require('./users/getUser'));
 router.use('/api/users/get', require('./users/getUsers'));

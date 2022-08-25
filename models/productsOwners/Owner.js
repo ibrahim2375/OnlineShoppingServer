@@ -38,7 +38,6 @@ const ownerSchema = new mongoose.Schema({
     totalMonyEearned: {
         type: Number,
     }
-
 }, { timestamps: true });
 
 module.exports = mongoose.model('Owner', ownerSchema);

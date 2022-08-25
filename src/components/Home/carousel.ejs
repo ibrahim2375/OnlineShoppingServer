@@ -1,0 +1,71 @@
+<!-- Carousel wrapper -->
+<div
+  id="carouselBasicExample"
+  class="carousel slide carousel-fade"
+  data-mdb-ride="carousel"
+>
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-mdb-target="#carouselBasicExample"
+      data-mdb-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-mdb-target="#carouselBasicExample"
+      data-mdb-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-mdb-target="#carouselBasicExample"
+      data-mdb-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+
+  <!-- Inner -->
+  <div class="carousel-inner">
+    <!-- Single item -->
+    <% carsouel_data.forEach((data , index) => { %>
+    <div class="carousel-item <%= data.active %>" style="max-height: 500px">
+      <img
+        src="<%= data.img %>"
+        class="d-block w-100"
+        style="object-fit: cover"
+        alt="Sunset Over the City"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5><%= data.title %></h5>
+        <p><%= data.description %></p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <!-- Inner -->
+
+  <!-- Controls -->
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-mdb-target="#carouselBasicExample"
+    data-mdb-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-mdb-target="#carouselBasicExample"
+    data-mdb-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Carousel wrapper -->

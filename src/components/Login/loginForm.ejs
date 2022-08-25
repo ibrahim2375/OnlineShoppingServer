@@ -1,0 +1,33 @@
+<form class="border p-5 rounded" action="/api/owners/auth/login" method="post">
+  <h1 class="text-center">Login Up</h1>
+  <p class="text-danger fw-bold d-block"><%= errors.message %></p>
+  <!-- Email input -->
+  <div class="form-outline-dark mb-4">
+    <input
+      type="email"
+      id="form1Example1"
+      class="form-control"
+      name="email"
+      placeholder="Write Email"
+    />
+    <label class="form-label" for="form1Example1">Email address</label>
+  </div>
+  <!-- Password input -->
+  <div class="form-outline-dark mb-4">
+    <input
+      type="password"
+      id="form1Example2"
+      class="form-control"
+      name="password"
+      placeholder="Password"
+    />
+    <label class="form-label" for="form1Example2">Password</label>
+  </div>
+  <div class="col">
+    <!-- Simple link -->
+    <a href="#!">Forgot password?</a>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+</form>
