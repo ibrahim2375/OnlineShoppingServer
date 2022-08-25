@@ -29,6 +29,7 @@ app.use(express.static('public'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
 // set the view engine to ejs
 app.set('views', __dirname + '/src/views');
 app.set('view engine', 'ejs');
@@ -49,6 +50,15 @@ app.use((err, req, res, next) => {
         message,
     });
 });
+// if no user
+app.use(async (req, res, next) => {
+    if (req.cookies.user_id && !req.session.user) {
+        await res.clearCookie('user_id');
+        await res.clearCookie('access_token_owner');
+    }
+    next();
+});
+
 //server running
 app.listen(port, host, () => {
     connect_to_db();

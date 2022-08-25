@@ -30,6 +30,13 @@
         <li class="nav-item">
           <a class="nav-link fw-bold" href="/">Home</a>
         </li>
+        <% if(owner) { %>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/api/products/create"
+            >Create Product</a
+          >
+        </li>
+        <% } %>
       </ul>
 
       <!-- Left links -->
