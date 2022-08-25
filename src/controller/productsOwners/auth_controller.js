@@ -1,6 +1,7 @@
 const Owner = require('../../../models/productsOwners/Owner')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
 const createError = require('../../errors/errorHandle');
 const registerFormSchema = require("../../validation/validateRegisterForm");
 const loginFormSchema = require("../../validation/validateLoginForm");
@@ -53,10 +54,11 @@ const methods = {
                                 loginErrors.message = 'this email not founded!';
                                 res.redirect('/api/owners/auth/login');
                             } else {
-                                bcrypt.compare(password, owner.password).then((result) => {
+                                bcrypt.compare(password, owner.password).then( async (result) => {
                                     if (result) {
+                                        req.session.owner = owner;
                                         ///succuss login
-                                        const token = jwt.sign({ id: owner._id }, process.env.JWT_SECRET_KEY_OWNER);
+                                        const token = await jwt.sign({ id: owner._id }, process.env.JWT_SECRET_KEY_OWNER);
                                         const { password, ...other } = owner._doc;
                                         res.cookie("access_token_owner", token, {
                                             httpOnly: true
@@ -76,7 +78,6 @@ const methods = {
                             loginErrors.message = err.message;
                             res.redirect('/api/owners/auth/login');
                         })
-
                     }
                 });
 
@@ -88,7 +89,7 @@ const methods = {
     //show register page
     async getregister(req, res, next) {
         try {
-            res.render("Register/register.ejs", { errors: registerErrors });
+            res.render("Register/register.ejs", { errors: registerErrors, owner: req.session.owner });
         } catch (error) {
             next(createError(error.status, error.message));
         }
@@ -96,7 +97,7 @@ const methods = {
     //show login page
     async getLogin(req, res, next) {
         try {
-            res.render("Login/login.ejs", { errors: loginErrors });
+            res.render("Login/login.ejs", { errors: loginErrors, owner: req.session.owner });
         } catch (error) {
             next(createError(error.status, error.message));
         }

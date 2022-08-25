@@ -25,11 +25,32 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Online Shopping</a>
+          <a class="nav-link" href="/">Online Shopping</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/">Home</a>
         </li>
       </ul>
+  
       <!-- Left links -->
-
+       <% if(owner) { %>
+      <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-link px-3 me-2">
+          <%= owner.name %>
+        </button>
+        <form action="/api/owners/auth/logout">
+          <button
+            type="submit"
+            class="btn me-3 text-white"
+            style="background-color: #5897fb"
+          >
+            logOut
+          </button></a
+        >
+        </form>
+      </div>
+       <% } else { %>
+      <!-- Left links -->
       <div class="d-flex align-items-center">
         <a href="/api/owners/auth/login"
           ><button type="button" class="btn btn-link px-3 me-2">
@@ -37,11 +58,16 @@
           </button></a
         >
         <a href="/api/owners/auth/create">
-          <button type="button" class="btn btn-primary me-3">
+          <button
+            type="button"
+            class="btn me-3 text-white"
+            style="background-color: #5897fb"
+          >
             Sign up for free
           </button></a
         >
       </div>
+       <% } %>
     </div>
     <!-- Collapsible wrapper -->
   </div>

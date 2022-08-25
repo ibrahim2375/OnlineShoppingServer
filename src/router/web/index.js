@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-
 //pages 
 router.use('/', require('./app/Home'));
 ///user
@@ -28,5 +27,6 @@ router.use('/api/owners/update', require('./productsOwners/updateOwner'));
 router.use('/api/owners/delete', require('./productsOwners/deleteOwner'));
 router.use('/api/owners/auth/create', require('./productsOwners/auth/createOwner'));
 router.use('/api/owners/auth/login', require('./productsOwners/auth/signIn'));
+router.use('/api/owners/auth/logout', require('./productsOwners/auth/logout'));
 
 module.exports = router

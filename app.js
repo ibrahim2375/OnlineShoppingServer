@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 require('dotenv').config();
 const app = express();
 //router
@@ -13,6 +14,16 @@ app.use(cors({
     origin: ['http://localhost:5000'],
     method: ['GET', 'Post', 'Put', 'Delete'],
     credentials: true, //to allow to cookies take session data
+}));
+//session
+app.use(session({
+    key: 'user_id',
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
 }));
 app.use(express.static('public'));
 app.use(cookieParser());

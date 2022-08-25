@@ -1,4 +1,5 @@
 const createError = require('../../errors/errorHandle');
+const session = require('express-session');
 const methods = {
     async getHome(req, res, next) {
         try {
@@ -22,7 +23,7 @@ const methods = {
                     img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
                 }
             ]
-            res.render("Home/home.ejs", { carsouel_data: carsouel_data });
+            res.render("Home/home.ejs", { carsouel_data: carsouel_data, owner: req.session.owner });
         } catch (error) {
             next(createError(error.status, error.message));
         }
