@@ -1,0 +1,29 @@
+<div
+  class="products d-flex justify-content-center align-items-center flex-wrap"
+  style="gap: 30px"
+>
+  <% products.forEach(product => { %>
+
+  <div class="card" style="width: 18rem">
+    <img
+      src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp"
+      class="card-img-top"
+      alt="Chicago Skyscrapers"
+    />
+    <div class="card-body">
+      <h5 class="card-title"><%= product.name %></h5>
+      <p class="card-text"><%= product.description %></p>
+    </div>
+    <ul class="list-group list-group-light list-group-small">
+      <li class="list-group-item px-4"><%= product.price %>$</li>
+      <li class="list-group-item px-4"><%= product.type %></li>
+      <li class="list-group-item px-4"><%= product.views %></li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+
+  <% }) %>
+</div>

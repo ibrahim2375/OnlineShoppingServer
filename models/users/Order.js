@@ -12,6 +12,9 @@ const orderSchema = new mongoose.Schema({
     size: {
         type: String,
     },
+    name: {
+        type: String,
+    },
     quantity: {
         type: Number,
         required: true,
@@ -22,6 +25,10 @@ const orderSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
+        required: true,
+    },
+    img: {
+        type: String,
         required: true,
     },
     accept: {

@@ -24,10 +24,15 @@ const methods = {
                         const salt = bcrypt.genSaltSync(10);
                         const hash = bcrypt.hashSync(req.body.password, salt);
                         const newOwner = new Owner({ ...req.body, password: hash });
-                        await newOwner.save();
-                        res.status(200);
-                        console.log('owner added succesfully....');
-                        res.redirect('/api/owners/auth/login');
+                        await newOwner.save().then((res) => {
+                            console.log('owner added succesfully....');
+                            res.redirect('/api/owners/auth/login');
+                        }
+                        ).catch((err) => {
+                            registerErrors.message = err.message;
+                            res.redirect('/api/owners/auth/create');
+                        });
+
                     }
                 });
 
@@ -54,7 +59,7 @@ const methods = {
                                 loginErrors.message = 'this email not founded!';
                                 res.redirect('/api/owners/auth/login');
                             } else {
-                                bcrypt.compare(password, owner.password).then( async (result) => {
+                                bcrypt.compare(password, owner.password).then(async (result) => {
                                     if (result) {
                                         req.session.owner = owner;
                                         ///succuss login
@@ -89,7 +94,7 @@ const methods = {
     //show register page
     async getregister(req, res, next) {
         try {
-            res.render("Register/register.ejs", { errors: registerErrors, owner: req.session.owner });
+            res.render("Register/register.ejs", { errors: registerErrors, owner: req?.session?.owner });
         } catch (error) {
             next(createError(error.status, error.message));
         }

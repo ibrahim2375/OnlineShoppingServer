@@ -10,7 +10,7 @@ const authenticateOwner = require('../../../../middlewares/authenticateOwner');
 process.chdir('../');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, `${process.cwd()}/server/Public/uploads/products`)
+        cb(null, `${process.cwd()}/online_shopping/public/assets/uploads`)
     },
     filename: function (req, file, cb) {
         const name = Date.now() + '-' + file.originalname;

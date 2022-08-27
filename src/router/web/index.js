@@ -7,20 +7,24 @@ router.use('/api/user/get', require('./users/getUser'));
 router.use('/api/users/get', require('./users/getUsers'));
 router.use('/api/users/update', require('./users/updateUser'));
 router.use('/api/users/delete', require('./users/deleteUser'));
+router.use('/api/users/add-to-favorites', require('./users/favorites/favorites'));
+router.use('/api/users/auth/create', require('./users/auth/createUser'));
+//finished
+router.use('/api/current-user', require('./users/auth/currentUser'));
 router.use('/api/users/order', require('./users/order/makeOrder'));
 router.use('/api/users/get-order', require('./users/order/getOrder'));
-router.use('/api/users/add-to-favorites', require('./users/favorites/favorites'));
+router.use('/api/users/delete-order', require('./users/order/deleteOrder'));
 router.use('/api/users/auth/login', require('./users/auth/signIn'));
-router.use('/api/users/auth/create', require('./users/auth/createUser'));
-
+router.use('/api/users/auth/logout', require('./users/auth/logOut'));
 
 
 //products      
-router.use('/api/products/get', require('./products/getProducts'));
 router.use('/api/products/update', require('./products/updateProduct'));
 router.use('/api/products/delete', require('./products/deleteProduct'));
-router.use('/api/products/owner/get', require('./products/OwnerProducts'));
+
 // finished
+router.use('/api/products/get', require('./products/getProducts'));
+router.use('/api/products/owner/get', require('./products/OwnerProducts'));
 router.use('/api/products/create', require('./products/createProduct'));
 
 

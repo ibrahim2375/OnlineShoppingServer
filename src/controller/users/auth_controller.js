@@ -23,16 +23,13 @@ const methods = {
                 if (!user) {
                     next(createError(403, 'this email not founded!'));
                 } else {
-                    bcrypt.compare(password, user.password).then((result) => {
+                    bcrypt.compare(password, user.password).then(async (result) => {
                         if (result) {
                             ///succuss login
-                            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY_USER);
+                            const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY_USER);
                             const { password, ...other } = user._doc;
-                            res.cookie("access_token", token, {
-                                httpOnly: true
-                            }).status(200).json(other);
+                            res.cookie("access_token", token).status(200).json(other);
                             // res.send("hi")
-
                         } else {
                             next(createError(403, 'password incorrect!'));
                         }
@@ -44,9 +41,30 @@ const methods = {
                 next(createError(404, err.message));
             })
 
-
         } catch (error) {
             next(error);
+        }
+    }, async getCurrentUser(req, res, next) {
+        try {
+            await User.findById(req.user.id).then(user => {
+                if (user) res.status(200).json(user);
+                // console.log(user);
+                else next(createError(200, 'user not founded'));
+            }).catch((err) => {
+                next(createError(403, err.message));
+            })
+        } catch (error) {
+            next(error);
+        }
+    }
+    ,
+    async logOut(req, res, next) {
+        try {
+            await res.clearCookie('access_token');
+            res.status(200).json({ message: 'logout successfully' });
+
+        } catch (error) {
+            next(createError(403, err.message));
         }
     }
 }

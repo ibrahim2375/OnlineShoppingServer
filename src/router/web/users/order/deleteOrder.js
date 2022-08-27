@@ -7,17 +7,16 @@ const createError = require('../../../../errors/errorHandle');
 const authenticate = require('../../../../../middlewares/authenticateUser');
 
 router.post('/', authenticate, async (req, res, next) => {
-
     //make order
-    const newOrder = new Order({ ...req.body, userId: req.user.id });
-    await newOrder.save().then((result) => {
-        if (!result) {
-            res.status(200).send('not added succesfully....');
-        }
-        res.status(200).send('order added succesfully....');
-    }).catch((err) => {
-        next(createError(err.status, err.message));
-    });
+    await Order.findByIdAndDelete(req.body.id)
+        .then((result) => {
+            if (!result) {
+                res.status(200).send('not deleted succesfully....');
+            }
+            res.status(200).send('order deleted succesfully....');
+        }).catch((err) => {
+            next(createError(err.status, err.message));
+        });
 
 });
 

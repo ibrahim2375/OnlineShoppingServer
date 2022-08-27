@@ -36,8 +36,6 @@ const methods = {
                     }
                 });
 
-
-
         } catch (error) {
             next(error);
         }

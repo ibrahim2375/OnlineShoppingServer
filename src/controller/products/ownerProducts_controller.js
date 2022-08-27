@@ -5,9 +5,9 @@ const methods = {
         try {
             await Product.find({ ownerId: req.owner.id }).then((result) => {
                 if (!result) {
-                    res.status(200).send('not products');
+                    res.render('ownerProducts/ownerProducts.ejs', { owner: req.session.owner, products: [] });
                 }
-                res.status(200).send(result);
+                 res.render('ownerProducts/ownerProducts.ejs', { owner: req.session.owner, products: result });
             }).catch((err) => {
                 next(createError(err.status, err.message));
             });
